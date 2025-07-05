@@ -15,7 +15,8 @@ const OrderSchema = new mongoose.Schema({
 const Order = mongoose.model('Order', OrderSchema);
 
 const addOrders = async ()=>{
-  await Order.insertMany({
+  let res = await Order.insertMany([
+    {
     items: 'Pizza',
     price: 500
   }, {
@@ -24,7 +25,9 @@ const addOrders = async ()=>{
   }, {
     items: 'Pasta',
     price: 300
-  })
+  }
+  ])
+  console.log(res);
 };
 
 addOrders().then(() => console.log('Orders added'))
