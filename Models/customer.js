@@ -8,12 +8,23 @@ async function main(){
 };
 
 const OrderSchema = new mongoose.Schema({
-  username: String,
-  addresses: [
-    {
-      _id: false, // Disable automatic _id generation for subdocuments
-      location: String,
-      city: String,
-    }
-  ]
+  items :String,
+  price : Number,
 });
+
+const Order = mongoose.model('Order', OrderSchema);
+
+const addOrders = async ()=>{
+  await Order.insertMany({
+    items: 'Pizza',
+    price: 500
+  }, {
+    items: 'Burger',
+    price: 200
+  }, {
+    items: 'Pasta',
+    price: 300
+  })
+};
+
+addOrders().then(() => console.log('Orders added'))
