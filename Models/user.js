@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
   username: String,
   addresses: [
     {
+      _id: false, // Disable automatic _id generation for subdocuments
       location: String,
       city: String,
     }
